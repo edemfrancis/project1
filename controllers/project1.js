@@ -1,11 +1,32 @@
-const controller1 = {};
+const mongodb = require("../database/database");
+const ObjectId = require("mongodb").ObjectId;
 
-controller1.francis = (req, res) => {
-	res.send("indexFrancis Lesson 1 Welcome to Lesson 1!");
+const getAllContacts = async (req, res) => {
+	//#swagger.tags = ['Contacts']
+	const result = await mongodb.getDatabase().db().collection("users").find();
+	result.toArray().then((users) => {
+		res.setHeader("Content-Type", "application/json");
+		res.status(200).json(users);
+		console.log(users);
+	});
 };
 
-controller1.getLesson1 = (req, res) => {
-	res.send("Hello from Lesson 1 Controller!");
+const getContactById = async (req, res) => {
+	//#swagger.tags = ['Contacts']
+	const contactId = new ObjectId(req.params.id);
+	const result = await mongodb
+		.getDatabase()
+		.db()
+		.collection("users")
+		.find({ _id: contactId });
+	result.toArray().then((users) => {
+		res.setHeader("Content-Type", "application/json");
+		res.status(200).json(users[0]);
+		console.log(users);
+	});
 };
 
-module.exports = controller1;
+module.exports = {
+	getAllContacts,
+	getContactById,
+};
