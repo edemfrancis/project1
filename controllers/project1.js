@@ -7,7 +7,6 @@ const getAllContacts = async (req, res) => {
 	result.toArray().then((users) => {
 		res.setHeader("Content-Type", "application/json");
 		res.status(200).json(users);
-		console.log(users);
 	});
 };
 
@@ -22,7 +21,6 @@ const getContactById = async (req, res) => {
 	result.toArray().then((users) => {
 		res.setHeader("Content-Type", "application/json");
 		res.status(200).json(users[0]);
-		console.log(users);
 	});
 };
 
