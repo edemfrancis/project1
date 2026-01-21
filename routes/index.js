@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const controller1 = require("../controllers/lessonwk01");
-router.get("/", require("./swagger"));
+router.use("/", require("./swagger"));
 
 router.get(
 	"/",

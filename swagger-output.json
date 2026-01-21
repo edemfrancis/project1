@@ -5,10 +5,10 @@
     "description": "API for managing contacts",
     "version": "1.0.0"
   },
-  "host": "https://project1-vycd.onrender.com",
+  "host": "https://project1-vycd.onrender.com/",
   "basePath": "/",
   "schemes": [
-  
+   
     "https"
   ],
   "paths": {

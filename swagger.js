@@ -1,4 +1,4 @@
-const swaggwerAutogen = require("swagger-autogen")();
+const swaggerAutogen = require("swagger-autogen")();
 
 const doc = {
 	info: {
@@ -6,9 +6,9 @@ const doc = {
 		description: "API for managing contacts",
 	},
 	host: "localhost:3000",
-	schemes: ["http", "https"],
+	schemes: ["https", "http"],
 };
 const outputFile = "./swagger-output.json";
 const endpointsFiles = ["./routes/index.js", "./controllers/project1.js"];
 
-swaggwerAutogen(outputFile, endpointsFiles, doc);
+swaggerAutogen(outputFile, endpointsFiles, doc);
