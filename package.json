@@ -5,7 +5,9 @@
     "express": "^5.1.0",
     "mongo": "^0.1.0",
     "mongodb": "^7.0.0",
-    "monodb": "^1.5.1"
+    "monodb": "^1.5.1",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"

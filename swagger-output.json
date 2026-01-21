@@ -1,0 +1,39 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Contact API",
+    "description": "API for managing contacts",
+    "version": "1.0.0"
+  },
+  "host": "https://project1-vycd.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Lesson Week 01"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/lesson1": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
