@@ -9,10 +9,31 @@ GET http://localhost:3000/users/691b80233403caeea453d14a
 POST  http://localhost:3000/users/ HTTP/1.1
 Content-Type: application/json
 
-{"email":"ed@gmail.com","username":"Fk234","name":"Ed More","ipaddress":"95.121.456.63"}
+{
+  "_id": {
+    "$oid": "69725d539080de00fefd2161"
+  },
+  "email": "ed@gmail.com",
+  "username": "Fk234",
+  "name": "Ed More",
+  "ipaddress": "95.121.456.63",
+  "birthday": "unknown",
+  "favoriteColor": "Unknown",
+  "firstName": "unkown",
+  "lastName": "Unknown"
+}
 
 ### Update user contact by ID
-PUT http://localhost:3000/users/69619c84f7195f2598e31194
+PUT http://localhost:3000/users/69725d539080de00fefd2161
 Content-Type: application/json
 
-{"email":"ed@gmail.com","username":"Fk234","name":"Ed More","ipaddress":"95.121.456.63"}
+{
+  "email": "ed@gmail.com",
+  "username": "Fk234",
+  "name": "Ed More",
+  "ipaddress": "95.121.456.63",
+  "birthday": "Check Certificate",
+  "favoriteColor": "Red",
+  "firstName": "Frank",
+  "lastName": "Unknown"
+}
