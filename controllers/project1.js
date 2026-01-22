@@ -2,7 +2,7 @@ const mongodb = require("../database/database");
 const { ObjectId } = require("mongodb");
 
 const getAllContacts = async (req, res) => {
-	//#swagger.tags = ['Contacts']
+	//#swagger.tags = ['project1']
 	const result = await mongodb.getDatabase().db().collection("users").find();
 	result.toArray().then((users) => {
 		res.setHeader("Content-Type", "application/json");
@@ -11,7 +11,7 @@ const getAllContacts = async (req, res) => {
 };
 
 const getContactById = async (req, res) => {
-	//#swagger.tags = ['Contacts']
+	//#swagger.tags = ['project1']
 	const contactId = new ObjectId(req.params.id);
 	const result = await mongodb
 		.getDatabase()
@@ -24,18 +24,17 @@ const getContactById = async (req, res) => {
 	});
 };
 const createContact = async (req, res) => {
-	//#swagger.tags = ['Contacts']
-	const contactId = new ObjectId(req.params.id);
+	//#swagger.tags = ['project1']
 	const contact = {
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
 		email: req.body.email,
-		favoriteColor: req.body.favoriteColor,
-		birthday: req.body.birthday,
+		username: req.body.username,
+		name: req.body.name,
+		ipaddress: req.body.ipaddress,
 	};
 	const response = await mongodb
 		.getDatabase()
-		.collection("contacts")
+		.db()
+		.collection("users")
 		.insertOne(contact);
 	if (response.acknowledged) {
 		res.status(201).json(response);
@@ -49,18 +48,18 @@ const createContact = async (req, res) => {
 };
 
 const updateContact = async (req, res) => {
-	//#swagger.tags = ['Contacts']
+	//#swagger.tags = ['project1']
 	const contactId = new ObjectId(req.params.id);
 	const contact = {
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
 		email: req.body.email,
-		favoriteColor: req.body.favoriteColor,
-		birthday: req.body.birthday,
+		username: req.body.username,
+		name: req.body.name,
+		ipaddress: req.body.ipaddress,
 	};
 	const response = await mongodb
 		.getDatabase()
-		.collection("contacts")
+		.db()
+		.collection("users")
 		.replaceOne({ _id: contactId }, contact);
 	console.log(response);
 	if (response.modifiedCount > 0) {
@@ -75,11 +74,12 @@ const updateContact = async (req, res) => {
 };
 
 const deleteContact = async (req, res) => {
-	//#swagger.tags = ['Contacts']
+	//#swagger.tags = ['project1']
 	const contactId = new ObjectId(req.params.id);
 	const response = await mongodb
 		.getDatabase()
-		.collection("contacts")
+		.db()
+		.collection("users")
 		.deleteOne({ _id: contactId });
 	console.log(response);
 	if (response.deletedCount > 0) {

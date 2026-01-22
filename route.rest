@@ -1,0 +1,18 @@
+ GET http://localhost:3000/users/
+ 
+{"_id":"691b80233403caeea453d14a","email":"mmm@gmail.com","username":"mmmmuser","name":"Hi dear","ipaddress":"94.121.163.63"},{"_id":"69619c84f7195f2598e31194"},{"_id":"69619e41479f6b22311461d1","email":"mmm@gmail.com","username":"mnana@gmail.com","name":"edeskimono","ipaddress":"94.121.554.63"}
+
+### Get user contact by ID
+GET http://localhost:3000/users/691b80233403caeea453d14a
+
+### Create user contact
+POST  http://localhost:3000/users/ HTTP/1.1
+Content-Type: application/json
+
+{"email":"ed@gmail.com","username":"Fk234","name":"Ed More","ipaddress":"95.121.456.63"}
+
+### Update user contact by ID
+PUT http://localhost:3000/users/69619c84f7195f2598e31194
+Content-Type: application/json
+
+{"email":"ed@gmail.com","username":"Fk234","name":"Ed More","ipaddress":"95.121.456.63"}

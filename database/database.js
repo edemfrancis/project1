@@ -39,5 +39,3 @@ module.exports = {
 	initDb,
 	getDatabase,
 };
-
-module.exports = { initDb, getDatabase };
