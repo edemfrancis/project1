@@ -30,6 +30,10 @@ const createContact = async (req, res) => {
 		username: req.body.username,
 		name: req.body.name,
 		ipaddress: req.body.ipaddress,
+		birthday: req.body.birthday,
+		favoriteColor: req.body.favoriteColor,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 	};
 	const response = await mongodb
 		.getDatabase()
@@ -55,6 +59,10 @@ const updateContact = async (req, res) => {
 		username: req.body.username,
 		name: req.body.name,
 		ipaddress: req.body.ipaddress,
+		birthday: req.body.birthday,
+		favoriteColor: req.body.favoriteColor,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 	};
 	const response = await mongodb
 		.getDatabase()
