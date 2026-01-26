@@ -5,13 +5,14 @@
     "description": "API for managing contacts",
     "version": "1.0.0"
   },
-  "host": "project1-7o5w.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
-    "/users/": {
+    "/": {
       "get": {
         "tags": [
           "project1"
@@ -23,6 +24,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -38,16 +42,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "email": {
+                "temple_id": {
                   "example": "any"
                 },
-                "username": {
+                "additionalInfo": {
                   "example": "any"
                 },
                 "name": {
                   "example": "any"
                 },
-                "ipaddress": {
+                "location": {
+                  "example": "any"
+                },
+                "dedicated": {
                   "example": "any"
                 }
               }
@@ -74,7 +81,17 @@
         }
       }
     },
-    "/users/{id}": {
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/{id}": {
       "get": {
         "tags": [
           "project1"
@@ -94,6 +111,12 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
           }
         }
       },
@@ -115,16 +138,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "email": {
+                "temple_id": {
                   "example": "any"
                 },
-                "username": {
+                "additionalInfo": {
                   "example": "any"
                 },
                 "name": {
                   "example": "any"
                 },
-                "ipaddress": {
+                "location": {
+                  "example": "any"
+                },
+                "dedicated": {
                   "example": "any"
                 }
               }
@@ -134,6 +160,12 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -157,18 +189,14 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
           }
         }
       }
