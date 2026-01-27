@@ -11,6 +11,6 @@ router.post("/", temple.createTemple);
 
 router.put("/:id", validate.saveTemple, temple.updateTemple);
 
-router.delete("/:id", validate.saveTemple, temple.deleteTemple);
+router.delete("/:id", temple.deleteTemple);
 
 module.exports = router;

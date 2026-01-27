@@ -1,18 +1,18 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Contact API",
-    "description": "API for managing contacts",
+    "title": "Temples API",
+    "description": "API for managing temples data",
     "version": "1.0.0"
   },
   "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https",
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
-    "/": {
+    "/temples": {
       "get": {
         "tags": [
           "project1"
@@ -91,7 +91,7 @@
         }
       }
     },
-    "/{id}": {
+    "/temples/{id}": {
       "get": {
         "tags": [
           "project1"

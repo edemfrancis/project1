@@ -1,39 +1,32 @@
- GET http://localhost:3000/users/
- 
-{"_id":"691b80233403caeea453d14a","email":"mmm@gmail.com","username":"mmmmuser","name":"Hi dear","ipaddress":"94.121.163.63"},{"_id":"69619c84f7195f2598e31194"},{"_id":"69619e41479f6b22311461d1","email":"mmm@gmail.com","username":"mnana@gmail.com","name":"edeskimono","ipaddress":"94.121.554.63"}
+ GET http://localhost:3000/temples/
+
 
 ### Get user contact by ID
-GET http://localhost:3000/users/691b80233403caeea453d14a
+GET http://localhost:3000/temples/691b80233403caeea453d14a
 
 ### Create user contact
-POST  http://localhost:3000/users/ HTTP/1.1
+POST  http://localhost:3000/temples/ HTTP/1.1
 Content-Type: application/json
 
 {
   "_id": {
     "$oid": "69725d539080de00fefd2161"
   },
-  "email": "ed@gmail.com",
-  "username": "Fk234",
-  "name": "Ed More",
-  "ipaddress": "95.121.456.63",
-  "birthday": "unknown",
-  "favoriteColor": "Unknown",
-  "firstName": "unkown",
-  "lastName": "Unknown"
+    "temple_id": "req.body.temple_id",
+		"additionalInfo": "req.body.additionalInfo",
+		"name":" req.body.name",
+		"location": "req.body.location",
+		"dedicated": "req.body.dedicated"
 }
 
 ### Update user contact by ID
-PUT http://localhost:3000/users/69725d539080de00fefd2161
+PUT http://localhost:3000/temples/69725d539080de00fefd2161
 Content-Type: application/json
 
 {
-  "email": "ed@gmail.com",
-  "username": "Fk234",
-  "name": "Ed More",
-  "ipaddress": "95.121.456.63",
-  "birthday": "Check Certificate",
-  "favoriteColor": "Red",
-  "firstName": "Frank",
-  "lastName": "Unknown"
+  "temple_id": "req.body.temple_id",
+		"additionalInfo": "req.body.additionalInfo",
+		"name":" req.body.name",
+		"location": "req.body.location",
+		"dedicated": "req.body.dedicated"
 }

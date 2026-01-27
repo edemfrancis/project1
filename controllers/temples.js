@@ -3,16 +3,20 @@ const { ObjectId } = require("mongodb");
 
 const getAllTemples = async (req, res) => {
 	//#swagger.tags = ['project1']
-	const result = await mongodb.getDatabase().db().collection("users").find();
-	result.toArray().then((err, Temples) => {
-		if (err) {
-			res
-				.status(500)
-				.json({ error: "An error occurred while fetching contacts." });
-		}
+	try {
+		const result = await mongodb
+			.getDatabase()
+			.db()
+			.collection("Temples")
+			.find();
+		const Temples = await result.toArray();
 		res.setHeader("Content-Type", "application/json");
 		res.status(200).json(Temples);
-	});
+	} catch (err) {
+		res
+			.status(500)
+			.json({ error: "An error occurred while fetching temples." });
+	}
 };
 
 const getTempleById = async (req, res) => {
@@ -22,19 +26,19 @@ const getTempleById = async (req, res) => {
 		return;
 	}
 
-	const templeId = new ObjectId(req.params.id);
-	const result = await mongodb
-		.getDatabase()
-		.db()
-		.collection("users")
-		.find({ _id: templeId });
-	result.toArray().then((Temples) => {
-		if (err) {
-			res.status(400).json({ message: err });
-		}
+	try {
+		const templeId = new ObjectId(req.params.id);
+		const result = await mongodb
+			.getDatabase()
+			.db()
+			.collection("Temples")
+			.find({ _id: templeId });
+		const Temples = await result.toArray();
 		res.setHeader("Content-Type", "application/json");
 		res.status(200).json(Temples[0]);
-	});
+	} catch (err) {
+		res.status(400).json({ message: err });
+	}
 };
 const createTemple = async (req, res) => {
 	//#swagger.tags = ['project1']
@@ -48,7 +52,7 @@ const createTemple = async (req, res) => {
 	const response = await mongodb
 		.getDatabase()
 		.db()
-		.collection("users")
+		.collection("Temples")
 		.insertOne(temple);
 	if (response.acknowledged) {
 		res.status(201).json(response);
@@ -77,7 +81,7 @@ const updateTemple = async (req, res) => {
 	const response = await mongodb
 		.getDatabase()
 		.db()
-		.collection("users")
+		.collection("Temples")
 		.replaceOne({ _id: templeId }, temple);
 	console.log(response);
 	if (response.modifiedCount > 0) {
@@ -100,7 +104,7 @@ const deleteTemple = async (req, res) => {
 	const response = await mongodb
 		.getDatabase()
 		.db()
-		.collection("users")
+		.collection("Temples")
 		.deleteOne({ _id: templeId });
 	console.log(response);
 	if (response.deletedCount > 0) {
