@@ -42,24 +42,32 @@ const getTempleById = async (req, res) => {
 };
 const createTemple = async (req, res) => {
 	//#swagger.tags = ['Temple']
-	const temple = {
-		temple_id: req.body.temple_id,
-		additionalInfo: req.body.additionalInfo,
-		name: req.body.name,
-		location: req.body.location,
-		dedicated: req.body.dedicated,
-	};
-	const response = await mongodb
-		.getDatabase()
-		.db()
-		.collection("Temples")
-		.insertOne(temple);
-	if (response.acknowledged) {
-		res.status(201).json(response);
-	} else {
+	try {
+		const temple = {
+			temple_id: req.body.temple_id,
+			additionalInfo: req.body.additionalInfo,
+			name: req.body.name,
+			location: req.body.location,
+			dedicated: req.body.dedicated,
+		};
+		const response = await mongodb
+			.getDatabase()
+			.db()
+			.collection("Temples")
+			.insertOne(temple);
+		if (response.acknowledged) {
+			res.status(201).json(response);
+		} else {
+			res
+				.status(500)
+				.json(
+					response.error || "Some error occurred while creating the temple.",
+				);
+		}
+	} catch (err) {
 		res
 			.status(500)
-			.json(response.error || "Some error occurred while creating the temple.");
+			.json({ error: "An error occurred while creating the temple." });
 	}
 };
 
@@ -70,26 +78,34 @@ const updateTemple = async (req, res) => {
 		return;
 	}
 
-	const templeId = new ObjectId(req.params.id);
-	const temple = {
-		temple_id: req.body.temple_id,
-		additionalInfo: req.body.additionalInfo,
-		name: req.body.name,
-		location: req.body.location,
-		dedicated: req.body.dedicated,
-	};
-	const response = await mongodb
-		.getDatabase()
-		.db()
-		.collection("Temples")
-		.replaceOne({ _id: templeId }, temple);
-	console.log(response);
-	if (response.modifiedCount > 0) {
-		res.status(204).send();
-	} else {
+	try {
+		const templeId = new ObjectId(req.params.id);
+		const temple = {
+			temple_id: req.body.temple_id,
+			additionalInfo: req.body.additionalInfo,
+			name: req.body.name,
+			location: req.body.location,
+			dedicated: req.body.dedicated,
+		};
+		const response = await mongodb
+			.getDatabase()
+			.db()
+			.collection("Temples")
+			.replaceOne({ _id: templeId }, temple);
+		console.log(response);
+		if (response.modifiedCount > 0) {
+			res.status(204).send();
+		} else {
+			res
+				.status(500)
+				.json(
+					response.error || "Some error occurred while updating the temple.",
+				);
+		}
+	} catch (err) {
 		res
 			.status(500)
-			.json(response.error || "Some error occurred while updating the temple.");
+			.json({ error: "An error occurred while updating the temple." });
 	}
 };
 
@@ -100,19 +116,27 @@ const deleteTemple = async (req, res) => {
 		return;
 	}
 
-	const templeId = new ObjectId(req.params.id);
-	const response = await mongodb
-		.getDatabase()
-		.db()
-		.collection("Temples")
-		.deleteOne({ _id: templeId });
-	console.log(response);
-	if (response.deletedCount > 0) {
-		res.status(204).send();
-	} else {
+	try {
+		const templeId = new ObjectId(req.params.id);
+		const response = await mongodb
+			.getDatabase()
+			.db()
+			.collection("Temples")
+			.deleteOne({ _id: templeId });
+		console.log(response);
+		if (response.deletedCount > 0) {
+			res.status(204).send();
+		} else {
+			res
+				.status(500)
+				.json(
+					response.error || "Some error occurred while deleting the temple.",
+				);
+		}
+	} catch (err) {
 		res
 			.status(500)
-			.json(response.error || "Some error occurred while deleting the temple.");
+			.json({ error: "An error occurred while deleting the temple." });
 	}
 };
 
