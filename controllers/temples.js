@@ -2,7 +2,7 @@ const mongodb = require("../database/database");
 const { ObjectId } = require("mongodb");
 
 const getAllTemples = async (req, res) => {
-	//#swagger.tags = ['project1']
+	//#swagger.tags = ['Temple']
 	try {
 		const result = await mongodb
 			.getDatabase()
@@ -20,7 +20,7 @@ const getAllTemples = async (req, res) => {
 };
 
 const getTempleById = async (req, res) => {
-	//#swagger.tags = ['project1']
+	//#swagger.tags = ['Temple']
 	if (!ObjectId.isValid(req.params.id)) {
 		res.status(400).json({ error: "Invalid temple ID format." });
 		return;
@@ -41,7 +41,7 @@ const getTempleById = async (req, res) => {
 	}
 };
 const createTemple = async (req, res) => {
-	//#swagger.tags = ['project1']
+	//#swagger.tags = ['Temple']
 	const temple = {
 		temple_id: req.body.temple_id,
 		additionalInfo: req.body.additionalInfo,
@@ -64,7 +64,7 @@ const createTemple = async (req, res) => {
 };
 
 const updateTemple = async (req, res) => {
-	//#swagger.tags = ['project1']
+	//#swagger.tags = ['Temple']
 	if (!ObjectId.isValid(req.params.id)) {
 		res.status(400).json({ error: "Invalid temple ID format." });
 		return;
@@ -94,7 +94,7 @@ const updateTemple = async (req, res) => {
 };
 
 const deleteTemple = async (req, res) => {
-	//#swagger.tags = ['project1']
+	//#swagger.tags = ['Temple']
 	if (!ObjectId.isValid(req.params.id)) {
 		res.status(400).json({ error: "Invalid temple ID format." });
 		return;

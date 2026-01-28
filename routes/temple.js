@@ -6,8 +6,8 @@ const temple = require("../controllers/temples");
 
 router.get("/", temple.getAllTemples);
 
-router.get("/:id", validate.saveTemple, temple.getTempleById);
-router.post("/", temple.createTemple);
+router.get("/:id", temple.getTempleById);
+router.post("/", validate.saveTemple, temple.createTemple);
 
 router.put("/:id", validate.saveTemple, temple.updateTemple);
 
