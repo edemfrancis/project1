@@ -5,7 +5,7 @@
     "description": "API for managing temples data",
     "version": "1.0.0"
   },
-  "host": "project1-1-kf20.onrender.com/",
+  "host": "project1-1-kf20.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
