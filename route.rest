@@ -2,7 +2,7 @@
 
 
 ### Get user contact by ID
-GET http://localhost:3000/temples/691b80233403caeea453d14a
+GET http://localhost:3000/temples/61a921f6028954d4f0319e90
 
 ### Create user contact
 POST  http://localhost:3000/temples/ HTTP/1.1

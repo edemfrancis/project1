@@ -5,7 +5,6 @@ const saveTemple = (req, res, next) => {
 		name: "required|string",
 		temple_id: "required|numeric",
 		location: "required|string",
-		additionalInfo: "required|string",
 		dedicated: "string",
 	};
 	validator(req.body, validationRule, {}, (err, status) => {
