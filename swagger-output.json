@@ -5,16 +5,17 @@
     "description": "API for managing temples data",
     "version": "1.0.0"
   },
-  "host": "project1-1-kf20.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
-    "/temples": {
+    "/temples/": {
       "get": {
         "tags": [
-          "CSE341"
+          "Temples"
         ],
         "description": "",
         "produces": [
@@ -31,7 +32,7 @@
       },
       "post": {
         "tags": [
-          "CSE341"
+          "Temples"
         ],
         "description": "",
         "parameters": [
@@ -93,7 +94,7 @@
     "/temples/{id}": {
       "get": {
         "tags": [
-          "CSE341"
+          "Temples"
         ],
         "description": "",
         "produces": [
@@ -121,7 +122,7 @@
       },
       "put": {
         "tags": [
-          "CSE341"
+          "Temples"
         ],
         "description": "",
         "parameters": [
@@ -173,7 +174,7 @@
       },
       "delete": {
         "tags": [
-          "CSE341"
+          "Temples"
         ],
         "description": "",
         "parameters": [
