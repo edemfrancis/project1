@@ -34,10 +34,16 @@ const getTempleById = async (req, res) => {
 			.collection("Temples")
 			.find({ _id: templeId });
 		const Temples = await result.toArray();
+		if (Temples.length === 0) {
+			res.status(404).json({ error: "Temple not found." });
+			return;
+		}
 		res.setHeader("Content-Type", "application/json");
 		res.status(200).json(Temples[0]);
 	} catch (err) {
-		res.status(400).json({ message: err });
+		res
+			.status(500)
+			.json({ error: "An error occurred while fetching the temple." });
 	}
 };
 const createTemple = async (req, res) => {
@@ -98,11 +104,7 @@ const updateTemple = async (req, res) => {
 		if (response.modifiedCount > 0) {
 			res.status(204).send();
 		} else {
-			res
-				.status(500)
-				.json(
-					response.error || "Some error occurred while updating the temple.",
-				);
+			res.status(404).json({ error: "Temple not found." });
 		}
 	} catch (err) {
 		res
@@ -129,11 +131,7 @@ const deleteTemple = async (req, res) => {
 		if (response.deletedCount > 0) {
 			res.status(204).send();
 		} else {
-			res
-				.status(500)
-				.json(
-					response.error || "Some error occurred while deleting the temple.",
-				);
+			res.status(404).json({ error: "Temple not found." });
 		}
 	} catch (err) {
 		res
