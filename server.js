@@ -73,7 +73,9 @@ process.on("uncaughtException", (err, origin) => {
 
 app.get("/", (req, res) => {
 	res.send(
-		req.session.user ? `Hello, ${req.session.user.displayName}!` : "Logged Out",
+		req.session.user
+			? `Hello, you logged in as ${req.session.user.username}!`
+			: "Logged Out",
 	);
 });
 
