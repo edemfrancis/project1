@@ -49,6 +49,7 @@ const createTemple = async (req, res) => {
 			name: req.body.name,
 			location: req.body.location,
 			dedicated: req.body.dedicated,
+			username: req.body.username,
 		};
 		const response = await mongodb
 			.getDatabase()
@@ -86,6 +87,7 @@ const updateTemple = async (req, res) => {
 			name: req.body.name,
 			location: req.body.location,
 			dedicated: req.body.dedicated,
+			username: req.body.username,
 		};
 		const response = await mongodb
 			.getDatabase()
