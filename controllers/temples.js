@@ -104,7 +104,7 @@ const updateTemple = async (req, res) => {
 		if (response.modifiedCount > 0) {
 			res.status(204).send();
 		} else {
-			res.status(404).json({ error: "Temple not found." });
+			res.status(400).json({ error: "Temple not found." });
 		}
 	} catch (err) {
 		res
@@ -131,7 +131,7 @@ const deleteTemple = async (req, res) => {
 		if (response.deletedCount > 0) {
 			res.status(204).send();
 		} else {
-			res.status(404).json({ error: "Temple not found." });
+			res.status(400).json({ error: "Temple not found." });
 		}
 	} catch (err) {
 		res

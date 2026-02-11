@@ -91,6 +91,10 @@ app.get(
 	},
 );
 
+app.use((err, req, res, next) => {
+	res.status(500).json({ message: err.message });
+});
+
 mongodb.initDb((err) => {
 	if (err) {
 		console.error("Database initialization failed:", err);
