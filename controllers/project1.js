@@ -4,7 +4,12 @@ const { ObjectId } = require("mongodb");
 const getAllContacts = async (req, res) => {
 	//#swagger.tags = ['project1']
 	const result = await mongodb.getDatabase().db().collection("users").find();
-	result.toArray().then((users) => {
+	result.toArray().then((err, users) => {
+		if (err) {
+			res
+				.status(500)
+				.json({ error: "An error occurred while fetching contacts." });
+		}
 		res.setHeader("Content-Type", "application/json");
 		res.status(200).json(users);
 	});
@@ -12,6 +17,11 @@ const getAllContacts = async (req, res) => {
 
 const getContactById = async (req, res) => {
 	//#swagger.tags = ['project1']
+	if (!ObjectId.isValid(req.params.id)) {
+		res.status(400).json({ error: "Invalid contact ID format." });
+		return;
+	}
+
 	const contactId = new ObjectId(req.params.id);
 	const result = await mongodb
 		.getDatabase()
@@ -19,6 +29,9 @@ const getContactById = async (req, res) => {
 		.collection("users")
 		.find({ _id: contactId });
 	result.toArray().then((users) => {
+		if (err) {
+			res.status(400).json({ message: err });
+		}
 		res.setHeader("Content-Type", "application/json");
 		res.status(200).json(users[0]);
 	});
@@ -43,16 +56,17 @@ const createContact = async (req, res) => {
 	if (response.acknowledged) {
 		res.status(201).json(response);
 	} else {
-		res
-			.status(500)
-			.json(
-				response.error || "Some error occurred while creating the contact.",
-			);
+		res.status(500).json(response.error || "  error occured.");
 	}
 };
 
 const updateContact = async (req, res) => {
 	//#swagger.tags = ['project1']
+	if (!ObjectId.isValid(req.params.id)) {
+		res.status(400).json({ error: "Invalid contact ID format." });
+		return;
+	}
+
 	const contactId = new ObjectId(req.params.id);
 	const contact = {
 		email: req.body.email,
@@ -83,6 +97,11 @@ const updateContact = async (req, res) => {
 
 const deleteContact = async (req, res) => {
 	//#swagger.tags = ['project1']
+	if (!ObjectId.isValid(req.params.id)) {
+		res.status(400).json({ error: "Invalid contact ID format." });
+		return;
+	}
+
 	const contactId = new ObjectId(req.params.id);
 	const response = await mongodb
 		.getDatabase()
