@@ -6,7 +6,7 @@ const contactController = require("../controllers/project1");
 
 router.get("/", contactController.getAllContacts);
 
-router.get("/:id", validate.saveContact, contactController.getContactById);
+router.get("/:id", contactController.getContactById);
 
 router.post("/", validate.saveContact, contactController.createContact);
 
