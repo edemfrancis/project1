@@ -1,17 +1,16 @@
 const validator = require("../helpers/validate");
 
-const saveTemple = (req, res, next) => {
+const saveContact = (req, res, next) => {
 	const validationRule = {
-		name: "required|string",
-		temple_id: "required|numeric",
-		location: "required|string",
-		dedicated: "string",
-		additionalInfo: "boolean",
-		username: "required|string",
+		firstName: "required|string",
+		lastName: "required|string",
+		email: "required|email",
+		favoriteColor: "required|string",
+		birthday: "string",
 	};
 	validator(req.body, validationRule, {}, (err, status) => {
 		if (!status) {
-			res.status(400).send({
+			res.status(400).json({
 				success: false,
 				message: "Validation failed",
 				data: err,
@@ -24,5 +23,5 @@ const saveTemple = (req, res, next) => {
 };
 
 module.exports = {
-	saveTemple,
+	saveContact,
 };

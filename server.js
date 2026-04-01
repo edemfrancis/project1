@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const mongodb = require("./database/database");
+const mongodb2 = require("./database/database2");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const session = require("express-session");
@@ -40,6 +41,7 @@ app.use(cors({ origin: "*" }));
 
 app.use("/", require("./routes"));
 app.use("/temples", require("./routes/temple"));
+app.use("/contact", require("./routes/project1"))
 
 passport.use(
 	new GitHubstrategy(
@@ -71,6 +73,13 @@ process.on("uncaughtException", (err, origin) => {
 	);
 });
 
+process.on("unhandledRejection", (reason, promise) => {
+	console.log(
+		process.stderr.fd,
+		`Unhandled Rejection at: ${promise}, reason: ${reason}`,
+	);
+});
+
 app.get("/", (req, res) => {
 	res.send(
 		req.session.user
@@ -97,16 +106,30 @@ app.use((err, req, res, next) => {
 
 mongodb.initDb((err) => {
 	if (err) {
-		console.error("Database initialization failed:", err);
+		console.error("Temples database initialization failed:", err);
 		console.warn(
-			"Starting server without a database connection (development mode).",
+			"Starting server without Temples database connection (development mode).",
 		);
-		app.listen(port, () => {
-			console.log(`Server is running on http://localhost:${port}`);
+		// Still try to initialize the second database
+		mongodb2.initDb((err2) => {
+			if (err2) {
+				console.error("Project1 database initialization failed:", err2);
+				console.warn("Starting server without database connections.");
+			}
+			app.listen(port, () => {
+				console.log(`Server is running on http://localhost:${port}`);
+			});
 		});
 	} else {
-		app.listen(port, () => {
-			console.log(`Server is running on http://localhost:${port}`);
+		// Initialize second database
+		mongodb2.initDb((err2) => {
+			if (err2) {
+				console.error("Project1 database initialization failed:", err2);
+				console.warn("Temples database connected, but project1 database failed.");
+			}
+			app.listen(port, () => {
+				console.log(`Server is running on http://localhost:${port}`);
+			});
 		});
 	}
 });
