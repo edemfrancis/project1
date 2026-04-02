@@ -60,7 +60,7 @@ const createContact = async (req, res) => {
 		.collection("users")
 		.insertOne(contact);
 	if (response.acknowledged) {
-		res.status(201).json(response);
+		res.status(200).json(response);
 	} else {
 		res
 			.status(500)
@@ -95,7 +95,7 @@ const updateContact = async (req, res) => {
 		.replaceOne({ _id: contactId }, contact);
 	console.log(response);
 	if (response.modifiedCount > 0) {
-		res.status(204).send();
+		res.status(200).send();
 	} else {
 		res
 			.status(500)
@@ -120,7 +120,7 @@ const deleteContact = async (req, res) => {
 		.deleteOne({ _id: contactId });
 	console.log(response);
 	if (response.deletedCount > 0) {
-		res.status(204).send();
+		res.status(200).send();
 	} else {
 		res
 			.status(500)
