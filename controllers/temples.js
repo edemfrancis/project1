@@ -63,7 +63,7 @@ const createTemple = async (req, res) => {
 			.collection("Temples")
 			.insertOne(temple);
 		if (response.acknowledged) {
-			res.status(201).json(response);
+			res.status(200).json(response);
 		} else {
 			res
 				.status(500)
@@ -102,7 +102,7 @@ const updateTemple = async (req, res) => {
 			.replaceOne({ _id: templeId }, temple);
 		console.log(response);
 		if (response.modifiedCount > 0) {
-			res.status(204).send();
+			res.status(200).send();
 		} else {
 			res.status(400).json({ error: "Temple not found." });
 		}
@@ -129,7 +129,7 @@ const deleteTemple = async (req, res) => {
 			.deleteOne({ _id: templeId });
 		console.log(response);
 		if (response.deletedCount > 0) {
-			res.status(204).send();
+			res.status(200).send();
 		} else {
 			res.status(400).json({ error: "Temple not found." });
 		}
